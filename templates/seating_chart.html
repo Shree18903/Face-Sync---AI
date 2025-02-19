@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seating Chart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+        }
+        .seat-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr); /* 10 columns for 100 seats */
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .seat {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            font-size: 18px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .seat.booked {
+            background-color: #28a745;
+        }
+        .seat.unbooked {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Seating Chart</h1>
+        <p>Green = Booked | Red = Unbooked</p>
+        <div class="seat-grid">
+            {% for seat in seats %}
+                <div class="seat {% if seat.booked %}booked{% else %}unbooked{% endif %}">
+                    {{ seat.number }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
